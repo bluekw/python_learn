@@ -1,0 +1,126 @@
+/* ==========================================================================
+   Code Block & Syntax Theme
+   Designed for clear distinction between Python code, execution output,
+   and instructional annotations.
+   ========================================================================== */
+
+.code-block-wrapper {
+  position: relative;
+  margin: 1.25rem 0;
+  border-radius: var(--radius-sm);
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.85rem;
+  background-color: #1e293b;
+  border-bottom: 1px solid #334155;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.code-lang-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: #38bdf8;
+}
+
+.code-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.copy-btn, .run-in-lab-btn {
+  background: transparent;
+  border: 1px solid #475569;
+  color: #cbd5e1;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.copy-btn:hover {
+  background-color: #334155;
+  color: #ffffff;
+  border-color: #64748b;
+}
+
+.run-in-lab-btn {
+  background-color: rgba(14, 165, 233, 0.15);
+  border-color: #0284c7;
+  color: #38bdf8;
+}
+
+.run-in-lab-btn:hover {
+  background-color: #0284c7;
+  color: #ffffff;
+}
+
+.code-content {
+  margin: 0;
+  padding: 1rem;
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  overflow-x: auto;
+  tab-size: 4;
+}
+
+/* Expected Output Block */
+.output-block-wrapper {
+  margin: 1rem 0;
+  border-radius: var(--radius-sm);
+  background-color: #020617;
+  border: 1px solid #1e293b;
+  overflow: hidden;
+}
+
+.output-header {
+  padding: 0.35rem 0.85rem;
+  background-color: #0f172a;
+  border-bottom: 1px solid #1e293b;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #10b981;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.output-content {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  color: #a7f3d0;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Light syntax highlight classes */
+.py-kw { color: #f472b6; font-weight: 600; }     /* def, if, for, in, return, import */
+.py-str { color: #a5f3fc; }                       /* 'string', "string" */
+.py-func { color: #60a5fa; }                      /* print, len, strip, etc */
+.py-num { color: #fde047; }                       /* 123, 3.14 */
+.py-comm { color: #64748b; font-style: italic; }  /* # comments */
+.py-op { color: #cbd5e1; }                        /* +, -, *, /, ==, != */
+.py-var { color: #f8fafc; }                       /* variable names */

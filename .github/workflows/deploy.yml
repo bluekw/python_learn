@@ -1,0 +1,68 @@
+name: Deploy Python Educational Site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# 設定 GitHub Pages 部署權限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同時間僅允許單一部署執行，避免並行衝突
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # 驗證工作階段：確保語法與靜態資源測試 100% 通過
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Static Assets & Route Tests
+        run: node tests/test_pages.js
+
+      - name: Run Curriculum Code Verification Tests
+        run: python tests/verify_curriculum.py
+
+      - name: Run Quiz Integrity Tests
+        run: python tests/verify_quizzes.py
+
+  # 部署工作階段：上傳靜態網站產出並發布至 GitHub Pages
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: verify
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

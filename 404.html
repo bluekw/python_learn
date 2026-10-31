@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>重新導向中... - Python 初學到進階</title>
+  <script>
+    // GitHub Pages SPA 重新導向支援
+    // 將意外的實體子路徑轉換為 SPA Hash 路由
+    var pathSegmentsToKeep = 1;
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/#/'
+    );
+  </script>
+</head>
+<body>
+  <p>正在為您導向至教學網站主頁，請稍候...</p>
+</body>
+</html>
